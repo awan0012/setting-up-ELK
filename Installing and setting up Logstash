@@ -1,0 +1,25 @@
+echo "deb http://packages.elasticsearch.org/logstash/1.5/debian stable main" | sudo tee -a /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install logstash
+sudo apt-get update
+sudo service logstash start
+sudo service logstash status
+
+
+create a file named /etc/logstash/conf.d/logstash-syslog.conf and copy the following contents on to the file.
+input {
+    file {
+    type => "syslog"
+    path => [ "/var/log/messages", "/var/log/*.log" ]
+    }
+    }
+    output {
+    stdout {
+    codec => rubydebug
+    }
+    elasticsearch {
+    host => "localhost" # If you are running elasticsearch in different instance, use #the prive ip instead of localhost.
+    }
+    }
+    
+    sudo service logstash restart
