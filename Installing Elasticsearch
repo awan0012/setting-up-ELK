@@ -1,0 +1,25 @@
+Installing Elasticsearch
+
+wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+echo "deb http://packages.elastic.co/elasticsearch/1.7/debian stable main" | sudo tee -a /etc/apt/sources.list.d/elasticsearch-1.7.list
+sudo apt-get update
+sudo apt-get install elasticsearch
+sudo service elasticsearch start
+curl localhost:9200
+
+
+output look 
+
+{
+  "status" : 200,
+  "name" : "Merlin",
+  "cluster_name" : "elasticsearch",
+  "version" : {
+    "number" : "1.7.3",
+    "build_hash" : "05d4530971ef0ea46d0f4fa6ee64dbc8df659682",
+    "build_timestamp" : "2015-10-15T09:14:17Z",
+    "build_snapshot" : false,
+    "lucene_version" : "4.10.4"
+  },
+  "tagline" : "You Know, for Search"
+}
