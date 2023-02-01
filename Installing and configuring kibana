@@ -1,0 +1,16 @@
+
+wget https://download.elastic.co/kibana/kibana/kibana-4.1.1-linux-x64.tar.gz
+tar -xzf kibana
+sudo mkdir -p /opt/kibana
+sudo mv kibana-4.1.1-linux-x64/* /opt/kibana
+
+
+Create a service file for startup using the following commands.
+
+cd /etc/init.d && sudo wget https://raw.githubusercontent.com/akabdog/scripts/master/kibana4_init -O kibana4
+sudo chmod +x /etc/init.d/kibana4
+sudo update-rc.d kibana4 defaults 96 9
+
+Start the kibana dashboard service.
+
+sudo service kibana4 start
